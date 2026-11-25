@@ -24,6 +24,11 @@ def resolve_output_path():
 
 def main():
     path = resolve_output_path()
+    encoded = LINE.encode("utf-8")
+    if not 1 <= len(encoded) <= 200:
+        raise ValueError(
+            "entry line must be 1-200 UTF-8 bytes, got %d" % len(encoded)
+        )
     try:
         directory = os.path.dirname(path)
         if directory:
